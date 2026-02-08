@@ -81,7 +81,7 @@ class SandwichMachine:
         print(f"{sandwich_size} sandwich is ready. Bon appetit!")
 
 
-### Make an instance of SandwichMachine class and write the rest of the codes ###
+###Make an instance of SandwichMachine class and write the rest of the codes ###
 
 sandwich_machine = SandwichMachine(resources)
 
