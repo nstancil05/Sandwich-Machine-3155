@@ -55,10 +55,14 @@ class SandwichMachine:
         """Returns the total calculated from coins inserted.
            Hint: include input() function here, e.g. input("how many quarters?: ")"""
         print("Please insert coins.")
-        large_dollars = int(input("how many large dollars?: "))
-        half_dollars = int(input("how many half dollars?: "))
-        quarters = int(input("how many quarters?: "))
-        nickels = int(input("how many nickels?: "))
+        try:
+            large_dollars = int(input("how many large dollars?: "))
+            half_dollars = int(input("how many half dollars?: "))
+            quarters = int(input("how many quarters?: "))
+            nickels = int(input("how many nickels?: "))
+        except ValueError:
+            print("Invalid input. Please enter whole numbers only.")
+            return 0
         total = large_dollars * 1.00 + half_dollars * 0.50 + quarters * 0.25 + nickels * 0.05
         return total
 
@@ -94,10 +98,12 @@ while is_on:
     elif choice == "report":
         print(f"Bread: {sandwich_machine.machine_resources['bread']} slice(s)")
         print(f"Ham: {sandwich_machine.machine_resources['ham']} slice(s)")
-        print(f"Cheese: {sandwich_machine.machine_resources['cheese']} pound(s)")
+        print(f"Cheese: {sandwich_machine.machine_resources['cheese']} ounce(s)")
     elif choice in recipes:
         sandwich = recipes[choice]
         if sandwich_machine.check_resources(sandwich["ingredients"]):
             coins = sandwich_machine.process_coins()
             if sandwich_machine.transaction_result(coins, sandwich["cost"]):
                 sandwich_machine.make_sandwich(choice, sandwich["ingredients"])
+    else:
+        print("Invalid option. Please choose small, medium, large, off, or report.")
